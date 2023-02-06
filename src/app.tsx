@@ -1,44 +1,37 @@
 import HomeGary from '@/assets/demoIcon/home.png';
 import HomeBlue from '@/assets/demoIcon/home1.png';
-import ListGary from '@/assets/demoIcon/list.png';
-import ListBlue from '@/assets/demoIcon/list1.png';
 import type {
   NavBarListItem,
   NavBarProps,
-  ResponseError,
   TabBarListItem,
   TabBarProps,
   TitleListItem,
 } from 'alita';
+import { history } from 'alita';
 
-export const request = {
-  prefix: '/api',
-  method: 'get',
-  errorHandler: (error: ResponseError) => {
-    // 集中处理错误
-    console.log(11111111);
-    console.log(error);
-  },
-};
-
+// 页面标题，也可以通过页面级别修改 这里貌似没法通过路由静态属性配合onRouteChange 来动态设置title
 const titleList: TitleListItem[] = [
   {
     pagePath: '/',
     title: '首页',
   },
   {
-    pagePath: '/list',
-    title: '列表',
+    pagePath: '/demo-list',
+    title: '测试列表页',
   },
 ];
+
+//  单独设置某些页面的 navbar
 const navList: NavBarListItem[] = [];
+
 const navBar: NavBarProps = {
   navList,
   fixed: false,
   onLeftClick: () => {
-    // router.goBack();
+    history.back();
   },
 };
+
 const tabList: TabBarListItem[] = [
   {
     pagePath: '/',
@@ -46,15 +39,6 @@ const tabList: TabBarListItem[] = [
     iconPath: HomeGary,
     selectedIconPath: HomeBlue,
     title: '首页',
-    iconSize: '',
-    badge: '',
-  },
-  {
-    pagePath: '/list',
-    text: '列表',
-    iconPath: ListGary,
-    selectedIconPath: ListBlue,
-    title: '列表',
     iconSize: '',
     badge: '',
   },
